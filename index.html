@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Российской Федерации - Добро пожаловать!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Ruslan+Display&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .ruslan-font {
+            font-family: 'Ruslan Display', cursive;
+        }
+        
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 39, 118, 0.6);
+            z-index: -1;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .floating-2 {
+            animation: floating-2 8s ease-in-out infinite;
+        }
+        
+        @keyframes floating-2 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+        }
+        
+        .floating-3 {
+            animation: floating-3 7s ease-in-out infinite;
+        }
+        
+        @keyframes floating-3 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+        
+        .floating-4 {
+            animation: floating-4 9s ease-in-out infinite;
+        }
+        
+        @keyframes floating-4 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-18px) rotate(7deg); }
+        }
+        
+        .floating-5 {
+            animation: floating-5 10s ease-in-out infinite;
+        }
+        
+        @keyframes floating-5 {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-22px) rotate(-3deg); }
+        }
+        
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .matryoshka {
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+        }
+        
+        .balalaika {
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+        }
+        
+        .kremlin {
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.3));
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            animation: fall linear infinite;
+            z-index: 5;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .welcome-text {
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, #ffffff, #e6f7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+        }
+        
+        .icon-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .icon-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <!-- Video Background -->
+    <video class="video-background" autoplay muted loop playsinline>
+        <source src="russia.mp4" type="video/mp4">
+        <!-- Fallback in case video doesn't load -->
+        <div class="bg-gradient-to-br from-blue-900 via-red-700 to-white absolute inset-0"></div>
+    </video>
+    
+    <!-- Overlay -->
+    <div class="overlay"></div>
+    
+    <!-- Snowflakes -->
+    <div id="snowflakes"></div>
+    
+    <!-- Floating Russian Elements -->
+    <div class="floating absolute top-10 left-10 h-full w-20">
+        <img src="doll.png" alt="Matryoshka Doll" class="matryoshka w-30 h-35">
+    </div>
+    
+    <div class="floating-2 absolute top-20 right-10">
+        <img src="kremlin1.png" alt="Balalaika" class="balalaika w-100 h-40">
+    </div>
+    
+    <div class="floating-3 absolute bottom-20 left-20 hidden md:block">
+        <img src="balalaika.png" alt="Kremlin" class="kremlin w-40 h-45">
+    </div>
+    
+    <div class="floating absolute bottom-10 right-20 hidden md:block">
+       <img src="kremlin.png" alt="" class="h-60 w-100">
+    </div>
+    
+    <!-- Additional floating elements with larger sizes -->
+    <div class="floating-4 absolute top-1/4 left-1/4 hidden md:block">
+        <img src="samovar.png" alt="Samovar" class="w-32 h-40">
+    </div>
+    
+    <div class="floating-5 absolute top-1/3 right-1/4 hidden md:block">
+        <img src="ushanka.png" alt="Ushanka" class="w-36 h-36">
+    </div>
+    
+    <!-- <div class="floating-4 absolute bottom-1/4 right-1/3 hidden md:block">
+        <img src="kokoshnik.png" alt="Troika" class="w-40 h-40">
+    </div>
+     -->
+    <div class="floating-3 absolute top-2/3 left-1/3 hidden md:block">
+        <img src="troika.png" alt="Kokoshnik" class="w-60 h-40">
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content text-center max-w-4xl mx-auto">
+        <!-- Welcome Text -->
+        <div class="pulse mb-12">
+            <h1 class="welcome-text md:text-[100px] font-bold mb-4 leading-tight ruslan-font">
+                Добро пожаловать!
+            </h1>
+            <!-- <h2 class="welcome-text text-4xl md:text-6xl font-bold mb-8 ruslan-font">
+              Российскую Федерацию!
+            </h2>
+             -->
+            <!-- Subtitle -->
+            <p class="text-white text-xl md:text-2xl mt-8 opacity-90">
+                Welcome to the Russian Federation
+            </p>
+        </div>
+
+        <!-- Facts Section -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white border-opacity-20">
+                <h3 class="text-xl font-bold mb-2">Самая большая страна</h3>
+                <p class="text-sm">Россия занимает более 17 млн км² территории</p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white border-opacity-20">
+                <h3 class="text-xl font-bold mb-2">11 часовых поясов</h3>
+                <p class="text-sm">От Калининграда до Камчатки</p>
+            </div>
+            
+            <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 text-white border border-white border-opacity-20">
+                <h3 class="text-xl font-bold mb-2">Богатая культура</h3>
+                <p class="text-sm">Тысячелетняя история и традиции</p>
+            </div>
+        </div>
+        
+        <!-- Explore Button -->
+    <!-- Footer -->
+    <script>
+        // Create snowflakes
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const snowflakeCount = 25;
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = '❄';
+                
+                // Random properties
+                const size = Math.random() * 1.5 + 0.5;
+                const left = Math.random() * 100;
+                const animationDuration = Math.random() * 10 + 5;
+                const animationDelay = Math.random() * 5;
+                
+                snowflake.style.left = `${left}vw`;
+                snowflake.style.fontSize = `${size}rem`;
+                snowflake.style.animationDuration = `${animationDuration}s`;
+                snowflake.style.animationDelay = `${animationDelay}s`;
+                
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+        
+        // Add floating elements movement
+        function moveFloatingElements() {
+            const floatingElements = document.querySelectorAll('.floating, .floating-2, .floating-3, .floating-4, .floating-5');
+            
+            floatingElements.forEach(el => {
+                // Random initial position for mobile
+                if (window.innerWidth < 768) {
+                    const randomTop = Math.random() * 70 + 10;
+                    const randomLeft = Math.random() * 80 + 10;
+                    el.style.top = `${randomTop}%`;
+                    el.style.left = `${randomLeft}%`;
+                }
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createSnowflakes();
+            moveFloatingElements();
+            
+            // Add video fallback if needed
+            const video = document.querySelector('.video-background');
+            video.addEventListener('error', function() {
+                console.log('Video failed to load, using gradient fallback');
+                video.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
